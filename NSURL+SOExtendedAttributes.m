@@ -234,17 +234,17 @@ static inline NSError *SOPOSIXErrorForURL(NSURL *url)
 //    -- WARNING --
 //    My priority right now is to get back the attributes, even if there's been an error - some attributes may still be valid
 //    
-//    BOOL hasErrors = [collectedErrors count] > 0;
-//    if (hasErrors && outError)
-//    {
+    BOOL hasErrors = [collectedErrors count] > 0;
+    if (hasErrors && outError)
+    {
 //        collectedAttributes = nil;
-//        
-//        NSMutableDictionary *errInfo = [NSMutableDictionary dictionary];
-//        [errInfo setObject:NSLocalizedString(@"Failed to get one or more extended attribute values", @"Error message description for SOExtendedAttributesGetValueError") forKey:NSLocalizedDescriptionKey];
-//        [errInfo setObject:self forKey:NSURLErrorKey];
-//        [errInfo setObject:collectedErrors forKey:SOUnderlyingErrorsKey];
-//        *outError = [NSError errorWithDomain:SOExtendedAttributesErrorDomain code:SOExtendedAttributesGetValueError userInfo:errInfo];
-//    }
+        
+        NSMutableDictionary *errInfo = [NSMutableDictionary dictionary];
+        [errInfo setObject:NSLocalizedString(@"Failed to get one or more extended attribute values", @"Error message description for SOExtendedAttributesGetValueError") forKey:NSLocalizedDescriptionKey];
+        [errInfo setObject:self forKey:NSURLErrorKey];
+        [errInfo setObject:collectedErrors forKey:SOUnderlyingErrorsKey];
+        *outError = [NSError errorWithDomain:SOExtendedAttributesErrorDomain code:SOExtendedAttributesGetValueError userInfo:errInfo];
+    }
     
     return collectedAttributes;
 }
